@@ -30,6 +30,18 @@
     <ClCompile Include="Actor\Start.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyClass\FIleRead\FileReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\ErrorController\ErrorController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\MapConverter\MapConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Node.h">
@@ -45,6 +57,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Actor\Start.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\FIleRead\FileReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\ErrorController\ErrorController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\MapConverter\MapConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\MapInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

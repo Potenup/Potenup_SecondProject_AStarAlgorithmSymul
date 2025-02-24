@@ -93,7 +93,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\;$(ProjectDir)\MyClass</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)\MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -117,7 +121,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\;$(ProjectDir)\MyClass</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)\MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +149,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\;$(ProjectDir)\MyClass</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)\MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,7 +177,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Includes\;$(ProjectDir)\;$(ProjectDir)\MyClass</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)\MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -189,6 +205,10 @@
     <ClCompile Include="Algorithm\AStar.cpp" />
     <ClCompile Include="Level\DemoLevel.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MyClass\ErrorController\ErrorController.cpp" />
+    <ClCompile Include="MyClass\FIleRead\FileReader.cpp" />
+    <ClCompile Include="MyClass\MapConverter\MapConverter.cpp" />
+    <ClCompile Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Player.h" />
@@ -196,6 +216,11 @@
     <ClInclude Include="Algorithm\AStar.h" />
     <ClInclude Include="Level\DemoLevel.h" />
     <ClInclude Include="Algorithm\Node.h" />
+    <ClInclude Include="MyClass\ErrorController\ErrorController.h" />
+    <ClInclude Include="MyClass\FIleRead\FileReader.h" />
+    <ClInclude Include="MyClass\MapConverter\MapConverter.h" />
+    <ClInclude Include="MyClass\MapInfo.h" />
+    <ClInclude Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
