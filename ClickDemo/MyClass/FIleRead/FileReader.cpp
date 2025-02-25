@@ -1,4 +1,4 @@
-#include "FIleRead/FileReader.h"
+ï»¿#include "FIleRead/FileReader.h"
 #include "ErrorDeliver/ErrorDeliver.h"
 #include <iostream>
 #include <Windows.h>
@@ -41,15 +41,15 @@ namespace soun
 	{
 		std::string s;
 
-		// À§Ä¡ ÁöÁ¤ÀÚ¸¦ ÆÄÀÏ ³¡À¸·Î ¿Å±ä´Ù.
+		// ìœ„ì¹˜ ì§€ì •ìžë¥¼ íŒŒì¼ ëìœ¼ë¡œ ì˜®ê¸´ë‹¤.
 		this->fileReaderObj_.seekg(0, std::ios::end);
-		// ±×¸®°í ±× À§Ä¡¸¦ ÀÐ´Â´Ù. (ÆÄÀÏÀÇ Å©±â)
-		int size = this->fileReaderObj_.tellg();
-		// ±× Å©±âÀÇ ¹®ÀÚ¿­À» ÇÒ´çÇÑ´Ù.
+		// ê·¸ë¦¬ê³  ê·¸ ìœ„ì¹˜ë¥¼ ì½ëŠ”ë‹¤. (íŒŒì¼ì˜ í¬ê¸°)
+		int size = (int)this->fileReaderObj_.tellg();
+		// ê·¸ í¬ê¸°ì˜ ë¬¸ìžì—´ì„ í• ë‹¹í•œë‹¤.
 		s.resize(size);
-		// À§Ä¡ ÁöÁ¤ÀÚ¸¦ ´Ù½Ã ÆÄÀÏ ¸Ç ¾ÕÀ¸·Î ¿Å±ä´Ù.
+		// ìœ„ì¹˜ ì§€ì •ìžë¥¼ ë‹¤ì‹œ íŒŒì¼ ë§¨ ì•žìœ¼ë¡œ ì˜®ê¸´ë‹¤.
 		this->fileReaderObj_.seekg(0, std::ios::beg);
-		// ÆÄÀÏ ÀüÃ¼ ³»¿ëÀ» ÀÐ¾î¼­ ¹®ÀÚ¿­¿¡ ÀúÀåÇÑ´Ù.
+		// íŒŒì¼ ì „ì²´ ë‚´ìš©ì„ ì½ì–´ì„œ ë¬¸ìžì—´ì— ì €ìž¥í•œë‹¤.
 		this->fileReaderObj_.read(&s[0], size);
 
 		return (s);

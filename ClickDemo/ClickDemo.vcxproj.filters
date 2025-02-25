@@ -21,13 +21,13 @@
     <ClCompile Include="Algorithm\AStar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Level\DemoLevel.cpp">
+    <ClCompile Include="Level\SymulationLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\Player.cpp">
+    <ClCompile Include="Actor\EndActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\Start.cpp">
+    <ClCompile Include="Actor\StartActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\FIleRead\FileReader.cpp">
@@ -42,6 +42,9 @@
     <ClCompile Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Actor\GameBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Node.h">
@@ -50,13 +53,13 @@
     <ClInclude Include="Algorithm\AStar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Level\DemoLevel.h">
+    <ClInclude Include="Level\SymulationLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\Player.h">
+    <ClInclude Include="Actor\EndActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\Start.h">
+    <ClInclude Include="Actor\StartActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\FIleRead\FileReader.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\GameBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

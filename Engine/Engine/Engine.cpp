@@ -156,6 +156,11 @@ void Engine::LoadLevel(Level* newLevel)
 	mainLevel = newLevel;
 }
 
+Level* Engine::GetMainLevel()
+{
+	return (this->mainLevel);
+}
+
 void Engine::AddActor(Actor* newActor)
 {
 	// 예외 처리.

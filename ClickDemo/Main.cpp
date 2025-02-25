@@ -1,5 +1,4 @@
 #include "Engine/Engine.h"
-#include "Level/DemoLevel.h"
 #include "ErrorDeliver/ErrorDeliver.h"
 #include "FIleRead/FileReader.h"
 #include "MapConverter/MapConverter.h"
@@ -18,8 +17,8 @@ int main()
 		MapConverter mapConverter(box);
 		MapInfo mInfo = mapConverter.CreateMapInfo();
 		Engine engine;
-		engine.LoadLevel(new DemoLevel());
-		engine.Run();
+		//engine.LoadLevel(new DemoLevel());
+		//engine.Run();
 	}
 	catch (const ErrorDeliver *ErrorObj)
 	{

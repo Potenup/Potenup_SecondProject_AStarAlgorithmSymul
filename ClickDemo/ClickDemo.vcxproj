@@ -200,10 +200,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actor\Player.cpp" />
-    <ClCompile Include="Actor\Start.cpp" />
+    <ClCompile Include="Actor\EndActor.cpp" />
+    <ClCompile Include="Actor\GameBoard.cpp" />
+    <ClCompile Include="Actor\StartActor.cpp" />
     <ClCompile Include="Algorithm\AStar.cpp" />
-    <ClCompile Include="Level\DemoLevel.cpp" />
+    <ClCompile Include="Level\SymulationLevel.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyClass\ErrorDeliver\ErrorDeliver.cpp" />
     <ClCompile Include="MyClass\FIleRead\FileReader.cpp" />
@@ -211,10 +212,11 @@
     <ClCompile Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor\Player.h" />
-    <ClInclude Include="Actor\Start.h" />
+    <ClInclude Include="Actor\GameBoard.h" />
+    <ClInclude Include="Actor\EndActor.h" />
+    <ClInclude Include="Actor\StartActor.h" />
     <ClInclude Include="Algorithm\AStar.h" />
-    <ClInclude Include="Level\DemoLevel.h" />
+    <ClInclude Include="Level\SymulationLevel.h" />
     <ClInclude Include="Algorithm\Node.h" />
     <ClInclude Include="MyClass\ErrorDeliver\ErrorDeliver.h" />
     <ClInclude Include="MyClass\FIleRead\FileReader.h" />

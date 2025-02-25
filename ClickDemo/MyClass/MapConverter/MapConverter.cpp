@@ -28,7 +28,7 @@ namespace soun
 
 	void MapConverter::FillMapEmpty(MapInfo& mInfo)
 	{
-		int maxLen = 0;
+		size_t maxLen = 0;
 		for (std::string& s : this->box_)
 		{
 			std::cout << s.size() << std::endl;
@@ -43,8 +43,8 @@ namespace soun
 			s = s + k;
 		}
 
-		mInfo.horizontal_ = this->box_[0].size();
-		mInfo.vertical_ = this->box_.size();
+		mInfo.horizontal_ = (int)this->box_[0].size();
+		mInfo.vertical_ = (int)this->box_.size();
 
 		DEBUG_EXECUTE(PrintBox());
 	}

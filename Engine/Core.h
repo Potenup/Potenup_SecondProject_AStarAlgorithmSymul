@@ -10,9 +10,11 @@
 // 색상 열거형.
 enum class Color : unsigned short
 {
+	Black = 0,
 	Red = FOREGROUND_RED,
 	Green = FOREGROUND_GREEN,
 	Blue = FOREGROUND_BLUE,
+	Yellow = Red + Green,
 	White = Red + Green + Blue,
 };
 

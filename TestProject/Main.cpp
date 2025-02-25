@@ -117,10 +117,7 @@ int main()
 		{
 			vector<vector<int>> cp = vec;
 			reverse(cp.begin(), cp.end());
-			for (vector<int> part : cp)
-			{
-				vec.push_back(part);
-			}
+			vec.insert(vec.end(), cp.begin(), cp.end());
 		}
 
 		cout << endl;

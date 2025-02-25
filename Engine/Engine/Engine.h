@@ -29,6 +29,8 @@ public:
 	// 레벨 추가 함수.
 	void LoadLevel(Level* newLevel);
 
+	Level* GetMainLevel();
+
 	// 액터 추가/삭제 함수.
 	void AddActor(Actor* newActor);
 	void DestroyActor(Actor* targetActor);
