@@ -3,26 +3,33 @@
 #include <vector>
 #include <string>
 #include "Math/Vector2.h"
+#include "MapInfo.h"
 
 namespace soun
 {
-	class MapMaker
+	class MapConverter
 	{
-		
 		public :
-			MapMaker(std::vector<std::string> box);
+			MapConverter(std::vector<std::string> &box);
 
-			void MakeMap();
+			void IsValidMap(MapInfo& mInfo);
+
+			MapInfo CreateMapInfo();
 			
 		private :
-			std::pair<Vector2, Vector2> IsPossibleMap();
+			void FillMapEmpty(MapInfo& mInfo);
 
-			void MapObjAnalyze(Vector2& start, Vector2& end);
+			void CheckInGameObj(MapInfo& mInfo);
 
-			void MapCheckPossible();
-		
+			void CheckVaildMap(MapInfo& mInfo);
+
+			void MakeMap(MapInfo& mInfo);
+
+			bool QuestNeber(int i, int j, std::vector<std::pair<int, int>>& direct, MapInfo& mInfo);
+
+			void PrintBox();
 
 		private :
-			const std::vector<std::string>& box_;
+			std::vector<std::string>& box_;
 	};
 }

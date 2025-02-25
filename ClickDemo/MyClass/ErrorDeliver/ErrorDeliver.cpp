@@ -20,8 +20,11 @@ namespace soun
 
 	void ErrorDeliver::MakeErrorMessage()
 	{
-		char buf[256];
-		strerror_s(buf, sizeof(buf), errno);
-		this->errorMessage_ = this->errorMessage_ + " " + buf;
+		if (errno != 0)
+		{
+			char buf[256];
+			strerror_s(buf, sizeof(buf), errno);
+			this->errorMessage_ = this->errorMessage_ + " (" + buf + ")";
+		}
 	}
 }

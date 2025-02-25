@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <io.h>
 #include <vector>
+#include <sstream>
 
 namespace soun
 {
@@ -57,22 +58,23 @@ namespace soun
 	std::vector<std::string> FileReader::MakeBox(const std::string& s)
 	{
 		std::vector<std::string> box;
-
-		int totalSize = s.size();
-
-		for (int i = 0; i < totalSize; ++i)
+		std::istringstream ss(s);
+		std::string line;
+		while (std::getline(ss, line))
 		{
-			std::string part = "";
-			int j = 0;
-			for (j = 0; i + j < totalSize && s[i + j] != '\n'; ++j)
+			while (!line.empty() && (line.back() == '\r' || line.back() == '\n' || line.back() == '\0'))
 			{
-				part.push_back(s[i + j]);
+				line.pop_back();
 			}
-			box.push_back(part);
-			i = i + j;
+			box.push_back(line);
 		}
-		return (box);
+		if (box.back().empty())
+		{
+			box.pop_back();
+		}
+		return box;
 	}
+
 	void FileReader::PrintBox(const std::vector<std::string>& box)
 	{
 		std::cout << "\n--- PrintBox ---\n" << std::endl;
