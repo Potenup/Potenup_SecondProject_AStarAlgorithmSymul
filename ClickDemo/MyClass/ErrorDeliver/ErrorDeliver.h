@@ -4,7 +4,7 @@
 
 namespace soun
 {
-	class ErrorController
+	class ErrorDeliver
 	{
 		//struct ErrorMessage
 		//{
@@ -18,15 +18,16 @@ namespace soun
 		//};
 
 		public :
-			ErrorController();
+			ErrorDeliver(const char* errorMessage);
 
-			static ErrorController &Get();
+			~ErrorDeliver();
 
-			std::string GetErrorMessage(const std::string& s);
+			const std::string &GetErrorMessage() const;
 
 		private :
-			static ErrorController* instance;
+			void MakeErrorMessage();
 
-			void GetErrorMessageToErrno(std::string& errorMessage);
+		private :
+			std::string errorMessage_;
 	};
 }

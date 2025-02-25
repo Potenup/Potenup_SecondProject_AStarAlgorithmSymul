@@ -1,5 +1,5 @@
 #include "FIleRead/FileReader.h"
-#include "ErrorController/ErrorController.h"
+#include "ErrorDeliver/ErrorDeliver.h"
 #include <iostream>
 #include <Windows.h>
 #include <io.h>
@@ -13,17 +13,16 @@ namespace soun
 		PRINT_MESSAGE(MESSAGE_REQUEST_FILE_NAME);
 		std::string filePath;
 		std::cin >> filePath;
-		if (_access(filePath.c_str(), 0) == -1)
+		ife (_access(filePath.c_str(), 0) == -1)
 		{
 			DEBUG_BREAK();
-			std::string error = ErrorController::Get().GetErrorMessage(ERROR_FILE_ACCESS);
-			throw (error.c_str());
+			throw (new ErrorDeliver(ERROR_FILE_ACCESS));
 		}
 		this->fileReaderObj_.open(filePath);
-		if (!this->fileReaderObj_.is_open())
+		ife (!this->fileReaderObj_.is_open())
 		{
 			DEBUG_BREAK();
-			throw (ErrorController::Get().GetErrorMessage(ERROR_FILE_OPEN));
+			throw (new ErrorDeliver(ERROR_FILE_OPEN));
 		}
 	}
 

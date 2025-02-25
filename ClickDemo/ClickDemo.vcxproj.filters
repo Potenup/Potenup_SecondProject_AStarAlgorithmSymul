@@ -33,7 +33,7 @@
     <ClCompile Include="MyClass\FIleRead\FileReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyClass\ErrorController\ErrorController.cpp">
+    <ClCompile Include="MyClass\ErrorDeliver\ErrorDeliver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\MapConverter\MapConverter.cpp">
@@ -62,7 +62,7 @@
     <ClInclude Include="MyClass\FIleRead\FileReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyClass\ErrorController\ErrorController.h">
+    <ClInclude Include="MyClass\ErrorDeliver\ErrorDeliver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\MapConverter\MapConverter.h">

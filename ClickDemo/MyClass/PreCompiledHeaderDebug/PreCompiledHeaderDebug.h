@@ -13,6 +13,9 @@
     #define DEBUG_EXECUTE(func) ((void)0)
 #endif
 
+#define ife (errno = 0);    \
+if
+
 #define PRINT_MESSAGE(message) (std::cout << (message) << std::endl)
 
 //NORMAL MESSAGE
