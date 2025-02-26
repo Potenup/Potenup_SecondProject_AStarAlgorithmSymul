@@ -19,8 +19,12 @@ if
 #define PRINT_MESSAGE(message) (std::cout << (message) << std::endl)
 
 //NORMAL MESSAGE
-#define MESSAGE_REQUEST_FILE_NAME "input file name"
-
+#define MESSAGE_REQUEST_FILE_NAME "input file name  "
+#define MESSAGE_QUEST_START "questStart       "
+#define MESSAGE_IMPOSSIBLE "impossibility    "
+#define MESSAGE_RESTART "Restart          "
+#define MESSAGE_OPTIAML_START "OptimalStart     "
+#define MESSAGE_CLEAR "                                         "
 //ERROR
 #define ERROR_FILE_ACCESS "Error : File access"
 #define ERROR_FILE_OPEN "Error : File open"

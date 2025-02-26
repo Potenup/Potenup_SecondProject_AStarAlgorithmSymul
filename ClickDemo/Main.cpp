@@ -40,6 +40,6 @@ int main()
 			std::cin.get();
 		}
 	}
-	
+	system("cls");
 	std::cin.get();
 }

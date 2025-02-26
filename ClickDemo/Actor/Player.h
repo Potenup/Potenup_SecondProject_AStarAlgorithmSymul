@@ -17,4 +17,6 @@ class Player : public Actor
 		virtual void Update(float deltaTime) override;
 	private :
 		bool& key_;
+		bool flag_ = false;
+		int vertical_ = 0;
 };

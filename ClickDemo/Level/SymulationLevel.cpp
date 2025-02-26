@@ -46,7 +46,7 @@ void SymulationLevel::SetMapInfo(soun::MapInfo& mapInfo)
 
 	int buttonVerticalLoc = mapInfo.vertical_ + 2;
 
-	this->questStartButton_ = new ButtonActor("questStart", Vector2(2, buttonVerticalLoc));
+	this->questStartButton_ = new ButtonActor(MESSAGE_QUEST_START, Vector2(2, buttonVerticalLoc));
 	this->questStartButton_->SetCallback([this]() { ChangeStateToQuesting(); });
 	AddActor(questStartButton_);
 
@@ -91,6 +91,8 @@ void SymulationLevel::ChangeStateToQuesting()
 	{
 		return ;
 	}
+	int buttonY = mapInfo_.vertical_ + 2;
+	Engine::Get().Draw(Vector2(0, buttonY), MESSAGE_CLEAR, Color::Black);
 
 	this->state_ = SymulationLevel::Questing;
 
@@ -128,6 +130,8 @@ void SymulationLevel::ChangeStateToOptimizing()
 	{
 		return;
 	}
+	int buttonY = mapInfo_.vertical_ + 2;
+	Engine::Get().Draw(Vector2(0, buttonY), MESSAGE_CLEAR, Color::Black);
 
 	this->optimalStartButton_->SetActive(false);
 	
@@ -140,6 +144,8 @@ void SymulationLevel::ChangeStateToReStartSymul()
 	{
 		return;
 	}
+	int buttonY = mapInfo_.vertical_ + 2;
+	Engine::Get().Draw(Vector2(0, buttonY), MESSAGE_CLEAR, Color::Black);
 
 	this->reStartButton_->SetActive(false);
 
@@ -173,9 +179,8 @@ void SymulationLevel::QuestingFuc(float deltaTime)
 			{
 				this->state_ = SymulationLevel::RestartReady;
 				int buttonY = mapInfo_.vertical_ + 1;
-				Engine::Get().Draw(Vector2(0, buttonY + 1), "                       ", Color::Red);
-				Engine::Get().Draw(Vector2(1, buttonY), "impossibility", Color::Red);
-				this->reStartButton_ = new ButtonActor("Restart", Vector2(2, buttonY + 2));
+				Engine::Get().Draw(Vector2(1, buttonY), MESSAGE_IMPOSSIBLE, Color::Red);
+				this->reStartButton_ = new ButtonActor(MESSAGE_RESTART, Vector2(2, buttonY + 2));
 				this->reStartButton_->SetCallback([this]() { this->ChangeStateToReStartSymul(); });
 				AddActor(this->reStartButton_);
 			}
@@ -184,7 +189,7 @@ void SymulationLevel::QuestingFuc(float deltaTime)
 				this->state_ = SymulationLevel::OptimalReady;
 
 				int buttonY = mapInfo_.vertical_ + 2;
-				this->optimalStartButton_ = new ButtonActor("OptimalStart   ", Vector2(2, buttonY));
+				this->optimalStartButton_ = new ButtonActor(MESSAGE_OPTIAML_START, Vector2(2, buttonY));
 				this->optimalStartButton_->SetCallback([this]() { this->ChangeStateToOptimizing(); });
 				AddActor(this->optimalStartButton_);
 			}
@@ -219,7 +224,7 @@ void SymulationLevel::OptimizingFuc(float deltaTime)
 			this->state_ = SymulationLevel::RestartReady;
 
 			int buttonY = mapInfo_.vertical_ + 2;
-			this->reStartButton_ = new ButtonActor("Restart       ", Vector2(2, buttonY));
+			this->reStartButton_ = new ButtonActor(MESSAGE_RESTART, Vector2(2, buttonY));
 			this->reStartButton_->SetCallback([this]() { this->ChangeStateToReStartSymul(); });
 			AddActor(this->reStartButton_);
 		}

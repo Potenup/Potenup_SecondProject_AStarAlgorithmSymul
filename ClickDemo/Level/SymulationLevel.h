@@ -46,6 +46,8 @@ class SymulationLevel : public Level
 
 		void CreateGrid();
 
+		const int GetMapVertical() const { return (this->mapInfo_.vertical_); }
+
 	public:
 		void ChangeStateToQuesting();
 		void ChangeStateToOptimizing();
