@@ -94,7 +94,7 @@ std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, const std::v
 
 		closedList.emplace_back(currentNode);
 		
-		questList.emplace_back(std::make_pair(currentNode->position.y, currentNode->position.x));
+		questList.emplace_back(std::make_pair(currentNode->position.x, currentNode->position.y));
 
 		// ÀÌ¿ô ³ëµå ¹æ¹®(Å½»ö). (ÇÏ/»ó/¿ì/ÁÂ Â÷·Ê·Î ¹æ¹®).
 		for (const Direction& direction : directions)
@@ -173,7 +173,7 @@ std::vector<Node*> AStar::ConstructPath(Node* goalNode, std::vector<std::pair<in
 	{
 		if (node != nullptr)
 		{
-			aStarList.push_back(std::make_pair(node->position.y, node->position.x));
+			aStarList.push_back(std::make_pair(node->position.x, node->position.y));
 		}
 	}
 	return path;

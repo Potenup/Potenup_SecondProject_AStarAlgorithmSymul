@@ -6,14 +6,19 @@ class EndActor : public DrawableActor
 {
 	RTTI_DECLARATIONS(EndActor, DrawableActor)
 
-public:
-	EndActor();
+	public:
+		EndActor();
+	
+		virtual ~EndActor() = default;
+	
+		EndActor(const EndActor& obj) = delete;
+	
+		EndActor& operator=(const EndActor& obj) = delete;
+	
+		virtual void Draw() override;
+	
+		virtual void Update(float deltaTime) override;
 
-	virtual ~EndActor() = default;
-
-	EndActor(const EndActor& obj) = delete;
-
-	EndActor& operator=(const EndActor& obj) = delete;
-
-	virtual void Update(float deltaTime) override;
+	private :
+		bool dirtyFlag_ = true;
 };

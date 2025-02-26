@@ -6,7 +6,7 @@
 class GameBoard : public Actor
 {
 	public :
-		GameBoard(const soun::MapInfo& mInfo);
+		GameBoard(soun::MapInfo& mInfo);
 
 		virtual ~GameBoard() = default;
 
@@ -21,8 +21,9 @@ class GameBoard : public Actor
 		void ChangeBoardUnit(int x, int y, char c);
 
 	private :
-		soun::MapInfo mapInfo;
+		soun::MapInfo& mapInfo_;
 
-		std::vector<std::vector<bool>> dirtyCheckBoard;
+		std::vector<std::vector<bool>> dirtyCheckBoard_;
 
+		bool dirtyControl_ = true;
 };

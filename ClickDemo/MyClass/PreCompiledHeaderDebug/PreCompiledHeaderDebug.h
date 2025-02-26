@@ -8,7 +8,7 @@
 #endif
 
 #ifdef _DEBUG
-    #define DEBUG_EXECUTE(func) (func)
+#define DEBUG_EXECUTE(func) do { if (IsDebuggerPresent()) { func; } } while (0)
 #else
     #define DEBUG_EXECUTE(func) ((void)0)
 #endif

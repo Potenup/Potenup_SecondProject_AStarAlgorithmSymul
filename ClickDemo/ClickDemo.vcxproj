@@ -203,6 +203,7 @@
     <ClCompile Include="Actor\ButtonActor.cpp" />
     <ClCompile Include="Actor\EndActor.cpp" />
     <ClCompile Include="Actor\GameBoard.cpp" />
+    <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Actor\StartActor.cpp" />
     <ClCompile Include="Algorithm\AStar.cpp" />
     <ClCompile Include="Level\SymulationLevel.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="Actor\ButtonActor.h" />
     <ClInclude Include="Actor\GameBoard.h" />
     <ClInclude Include="Actor\EndActor.h" />
+    <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Actor\StartActor.h" />
     <ClInclude Include="Algorithm\AStar.h" />
     <ClInclude Include="Level\SymulationLevel.h" />

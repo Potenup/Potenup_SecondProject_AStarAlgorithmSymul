@@ -4,14 +4,20 @@
 
 class StartActor : public DrawableActor
 {
-public:
-	StartActor();
+	RTTI_DECLARATIONS(StartActor, DrawableActor)
 
-	virtual ~StartActor() = default;
-
-	StartActor(const StartActor& obj) = delete;
-
-	StartActor& operator=(const StartActor& obj) = delete;
-
-	virtual void Update(float deltaTime) override;
+	public :
+		StartActor();
+	
+		virtual ~StartActor() = default;
+	
+		StartActor(const StartActor& obj) = delete;
+	
+		StartActor& operator=(const StartActor& obj) = delete;
+	
+		virtual void Draw() override;
+	
+		virtual void Update(float deltaTime) override;
+	private :
+		bool dirtyFlag_ = true;
 };

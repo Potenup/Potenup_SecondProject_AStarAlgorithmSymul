@@ -1,8 +1,9 @@
 #include "SymulationLevel.h"
 #include "Algorithm/Node.h"
+#include "Engine/Engine.h"
 
 SymulationLevel::SymulationLevel()
-	: timer(0.1f)
+	: timer_(0.1f)
 {
 	ptrFunc[0] = &SymulationLevel::QuestReadyFuc;
 	ptrFunc[1] = &SymulationLevel::QuestingFuc;
@@ -48,6 +49,8 @@ void SymulationLevel::SetMapInfo(soun::MapInfo& mapInfo)
 	this->questStartButton_ = new ButtonActor("questStart", Vector2(2, buttonVerticalLoc));
 	this->questStartButton_->SetCallback([this]() { ChangeStateToQuesting(); });
 	AddActor(questStartButton_);
+
+	this->CreateGrid();
 }
 
 SymulationLevel::State SymulationLevel::GetState() const
@@ -75,7 +78,7 @@ void SymulationLevel::CreateGrid()
 			char c = this->mapInfo_.map_[y][x];
 			if (c == soun::GameObj::road || c == soun::GameObj::start || c == soun::GameObj::end)
 			{
-				grid_[y][x] = 0;
+				part[x] = 0;
 			}
 		}
 		this->grid_.push_back(part);
@@ -92,20 +95,31 @@ void SymulationLevel::ChangeStateToQuesting()
 	this->state_ = SymulationLevel::Questing;
 
 	this->questStartButton_->SetActive(false);
-	this->questStartButton_->Destroy();
 
 	Node *startNode = new Node(this->mapInfo_.start_);
 	Node *endNode = new Node(this->mapInfo_.end_);
 
-	std::vector<Node*> path = this->astar.FindPath(startNode, endNode, this->grid_, this->questList_, this->astarList_);
+	std::vector<Node*> path = this->astar_.FindPath(startNode, endNode, this->grid_, this->questList_, this->astarList_);
 
-	delete startNode;
+	if (!this->questList_.empty())
+	{
+		std::vector<std::pair<int, int>> v(this->questList_.begin() + 1, this->questList_.end());
+		this->questList_ = v;
+	}
+
+	if (this->astarList_.size() >= 2)
+	{
+		std::vector<std::pair<int, int>> v(this->astarList_.begin() + 1, this->astarList_.end() - 1);
+		this->astarList_ = v;
+	}
+
 	delete endNode;
+	endNode = nullptr;
 
 	this->currentQuestIndex_ = 0;
 	this->currentAstarIndex_ = 0;
 
-	this->timer.Reset();
+	this->timer_.Reset();
 }
 
 void SymulationLevel::ChangeStateToOptimizing()
@@ -115,6 +129,8 @@ void SymulationLevel::ChangeStateToOptimizing()
 		return;
 	}
 
+	this->optimalStartButton_->SetActive(false);
+	
 	this->state_ = SymulationLevel::Optimizing;
 }
 
@@ -125,33 +141,91 @@ void SymulationLevel::ChangeStateToReStartSymul()
 		return;
 	}
 
-	throw ;
+	this->reStartButton_->SetActive(false);
+
+	Engine::Get().QuitGame();
 }
 
 void SymulationLevel::QuestReadyFuc(float deltaTime)
 {
-	//this->startActor_->Update(deltaTime);
-	//this->endActor_->Update(deltaTime);
+	return ;
 }
 
 void SymulationLevel::QuestingFuc(float deltaTime)
 {
-	this->state_ = SymulationLevel::OptimalReady;
+	this->timer_.Update(deltaTime);
 
-	int buttonY = mapInfo_.vertical_ + 2;
-	this->optimalStartButton_ = new ButtonActor("", Vector2(2, buttonY));
-	this->optimalStartButton_->SetCallback([this]() { this->ChangeStateToOptimizing(); });
-	AddActor(this->optimalStartButton_);
+	if (this->timer_.IsTimeOut())
+	{
+		if (this->currentQuestIndex_ < this->questList_.size())
+		{
+			Vector2 pos(this->questList_[this->currentQuestIndex_].first, this->questList_[this->currentQuestIndex_].second);
+
+			Engine::Get().Draw(pos, "0", Color::Yellow);
+
+			this->currentQuestIndex_ = this->currentQuestIndex_ + 1;
+
+			this->timer_.Reset();
+		}
+		else 
+		{
+			if (this->astarList_.empty())
+			{
+				this->state_ = SymulationLevel::RestartReady;
+				int buttonY = mapInfo_.vertical_ + 1;
+				Engine::Get().Draw(Vector2(0, buttonY + 1), "                       ", Color::Red);
+				Engine::Get().Draw(Vector2(1, buttonY), "impossibility", Color::Red);
+				this->reStartButton_ = new ButtonActor("Restart", Vector2(2, buttonY + 2));
+				this->reStartButton_->SetCallback([this]() { this->ChangeStateToReStartSymul(); });
+				AddActor(this->reStartButton_);
+			}
+			else
+			{
+				this->state_ = SymulationLevel::OptimalReady;
+
+				int buttonY = mapInfo_.vertical_ + 2;
+				this->optimalStartButton_ = new ButtonActor("OptimalStart   ", Vector2(2, buttonY));
+				this->optimalStartButton_->SetCallback([this]() { this->ChangeStateToOptimizing(); });
+				AddActor(this->optimalStartButton_);
+			}
+		}
+	}
 }
 
 void SymulationLevel::OptimalReadyFuc(float deltaTime)
 {
+	//int buttonY = mapInfo_.vertical_ + 2;
+	//Engine::Get().Draw(Vector2(2, buttonY), "Optimizing..", Color::White);
 }
 
 void SymulationLevel::OptimizingFuc(float deltaTime)
 {
-}
+	this->timer_.Update(deltaTime);
 
+	if (this->timer_.IsTimeOut())
+	{
+		if (this->currentAstarIndex_ < this->astarList_.size())
+		{
+			Vector2 pos(this->astarList_[this->currentAstarIndex_].first, this->astarList_[this->currentAstarIndex_].second);
+
+			Engine::Get().Draw(pos, "0", Color::Green);
+
+			this->currentAstarIndex_ = this->currentAstarIndex_ + 1;
+
+			this->timer_.Reset();
+		}
+		else
+		{
+			this->state_ = SymulationLevel::RestartReady;
+
+			int buttonY = mapInfo_.vertical_ + 2;
+			this->reStartButton_ = new ButtonActor("Restart       ", Vector2(2, buttonY));
+			this->reStartButton_->SetCallback([this]() { this->ChangeStateToReStartSymul(); });
+			AddActor(this->reStartButton_);
+		}
+	}
+}
 void SymulationLevel::RestartReadyFuc(float deltaTime)
 {
+	return ;
 }

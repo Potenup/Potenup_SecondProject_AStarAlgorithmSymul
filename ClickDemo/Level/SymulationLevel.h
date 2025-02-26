@@ -12,18 +12,18 @@
 
 class SymulationLevel : public Level
 {
-	enum State
-	{
-		QuestReady,
-		Questing,
-		OptimalReady,
-		Optimizing,
-		RestartReady,
-	};
-
 	RTTI_DECLARATIONS(SymulationLevel, Level)
 
 	public:
+		enum State
+		{
+			QuestReady,
+			Questing,
+			OptimalReady,
+			Optimizing,
+			RestartReady,
+		};
+
 		SymulationLevel();
 
 		virtual ~SymulationLevel();
@@ -44,14 +44,14 @@ class SymulationLevel : public Level
 
 		void SetBoradUnit(int x, int y, char c);
 
+		void CreateGrid();
+
 	public:
 		void ChangeStateToQuesting();
 		void ChangeStateToOptimizing();
 		void ChangeStateToReStartSymul();
 
 	private :
-		void CreateGrid();
-
 		void QuestReadyFuc(float deltaTime);
 		void QuestingFuc(float deltaTime);
 		void OptimalReadyFuc(float deltaTime);
@@ -63,21 +63,21 @@ class SymulationLevel : public Level
 		ButtonActor* optimalStartButton_ = nullptr;
 		ButtonActor* reStartButton_ = nullptr;
 
-		Timer timer;
-
 	private:
 		State state_ = QuestReady;
+
+		void (SymulationLevel::* ptrFunc[5])(float deltaTime);
 
 		soun::MapInfo mapInfo_;
 		GameBoard* gameBoard_ = nullptr;
 		StartActor* startActor_ = nullptr;
 		EndActor* endActor_ = nullptr;
 
-		std::vector<std::vector<int>> grid_;
+		Timer timer_;
 
-		void (SymulationLevel::* ptrFunc[5])(float deltaTime);
-		
-		AStar astar;
+	private :
+		std::vector<std::vector<int>> grid_;
+		AStar astar_;
 
 		std::vector<std::pair<int, int>> questList_;
 		std::vector<std::pair<int, int>> astarList_;

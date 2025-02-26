@@ -321,7 +321,7 @@ void Engine::Clear()
 void Engine::Draw()
 {
 	// 화면 지우기.
-	Clear();
+	//Clear();
 
 	//char buffer[256];
 	//snprintf(buffer, 256, "mouse position: (%d,%d)\n", mousePosition.x, mousePosition.y);

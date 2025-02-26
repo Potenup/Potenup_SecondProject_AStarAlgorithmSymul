@@ -31,14 +31,12 @@ namespace soun
 		size_t maxLen = 0;
 		for (std::string& s : this->box_)
 		{
-			std::cout << s.size() << std::endl;
 			maxLen = max(maxLen, s.size());
 		}
 		
 
 		for (std::string& s : this->box_)
 		{
-			std::cout << maxLen - s.size() << std::endl;
 			std::string k(maxLen - s.size(), '2');
 			s = s + k;
 		}

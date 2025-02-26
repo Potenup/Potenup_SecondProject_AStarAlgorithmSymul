@@ -8,6 +8,15 @@ StartActor::StartActor()
 	color = Color::Green;
 }
 
+void StartActor::Draw()
+{
+	if (this->dirtyFlag_)
+	{
+		Super::Draw();
+		this->dirtyFlag_ = false;
+	}
+}
+
 void StartActor::Update(float deltaTime)
 {
 	Super::Update(deltaTime);
@@ -18,11 +27,12 @@ void StartActor::Update(float deltaTime)
 
 		SymulationLevel* level = dynamic_cast<SymulationLevel*>(Engine::Get().GetMainLevel());
 
-		if (level && level->IsValidPosition(mousePos, soun::GameObj::road))
+		if (level && level->GetState() == SymulationLevel::State::QuestReady && level->IsValidPosition(mousePos, soun::GameObj::road))
 		{
 			level->SetBoradUnit(position.x, position.y, '0');
 			position = mousePos;
 			level->SetBoradUnit(position.x, position.y, 's');
+			this->dirtyFlag_ = true;
 		}
 	}
 }
