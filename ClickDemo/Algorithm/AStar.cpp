@@ -1,13 +1,16 @@
 #include "AStar.h"
 #include "Node.h"
 #include "Math/Vector2.h"
-
+#include <string>
 #include <iostream>
+#include "Level/SymulationLevel.h"
 
 AStar::AStar()
 	: startNode(nullptr), goalNode(nullptr)
 {
 }
+
+
 
 AStar::~AStar()
 {
@@ -25,7 +28,7 @@ AStar::~AStar()
 	closedList.clear();
 }
 
-std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, const std::vector<std::vector<int>>& grid)
+std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, const std::vector<std::vector<int>>& grid, std::vector<std::pair<int, int>>& questList, std::vector<std::pair<int, int>>& aStarList)
 {
 	this->startNode = startNode;
 	this->goalNode = goalNode;
@@ -33,14 +36,11 @@ std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, const std::v
 	// 시작 노드를 열린 리스트(OpenList)에 추가.
 	openList.emplace_back(startNode);
 
-	// 상하좌우 및 대각선 이동 방향과 비용
+	// 상하좌우 방향과 비용
 	std::vector<Direction> directions =
 	{
 		// 하상우좌 이동.
-		{ 0, 1, 1.0f }, { 0, -1, 1.0f }, { 1, 0, 1.0f }, { -1, 0, 1.0f },
-
-		// 대각선 이동.
-		{ 1, 1, 1.414f }, { 1, -1, 1.414f }, { -1, 1, 1.414f }, { -1, -1, 1.414f }
+		{ 0, 1, 1 }, { 0, -1, 1 }, { 1, 0, 1 }, { -1, 0, 1 },
 	};
 
 	// 이웃 노드 탐색 (열린 리스트가 비어 있지 않은 동안 반복).
@@ -62,7 +62,7 @@ std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, const std::v
 		// 현재 노드가 목표 노드인지 확인 후 맞으면 종료.
 		if (IsDestination(currentNode))
 		{
-			return ConstructPath(currentNode);
+			return ConstructPath(currentNode, aStarList);
 		}
 
 		// 방문 처리를 위해 현재 노드를 열린 리스트에서 제거.
@@ -93,6 +93,8 @@ std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, const std::v
 		}
 
 		closedList.emplace_back(currentNode);
+		
+		questList.emplace_back(std::make_pair(currentNode->position.y, currentNode->position.x));
 
 		// 이웃 노드 방문(탐색). (하/상/우/좌 차례로 방문).
 		for (const Direction& direction : directions)
@@ -155,7 +157,7 @@ std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, const std::v
 	return {};
 }
 
-std::vector<Node*> AStar::ConstructPath(Node* goalNode)
+std::vector<Node*> AStar::ConstructPath(Node* goalNode, std::vector<std::pair<int, int>>& aStarList)
 {
 	// 목표 노드 부터, 부모 노드를 따라 역추적하면서 경로 노드 설정.
 	std::vector<Node*> path;
@@ -167,6 +169,13 @@ std::vector<Node*> AStar::ConstructPath(Node* goalNode)
 	}
 
 	std::reverse(path.begin(), path.end());
+	for (Node* node : path)
+	{
+		if (node != nullptr)
+		{
+			aStarList.push_back(std::make_pair(node->position.y, node->position.x));
+		}
+	}
 	return path;
 }
 

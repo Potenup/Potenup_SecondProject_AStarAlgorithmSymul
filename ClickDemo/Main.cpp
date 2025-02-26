@@ -23,7 +23,7 @@ int main()
 		engine.LoadLevel(symulationLevel);
 		engine.Run();
 	}
-	catch (const ErrorDeliver *ErrorObj)
+	catch (const ErrorDeliver* ErrorObj)
 	{
 		system("cls");
 		std::cout << ErrorObj->GetErrorMessage() << std::endl;

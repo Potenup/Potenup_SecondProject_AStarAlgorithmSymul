@@ -4,6 +4,7 @@
 
 // A* 길찾기 기능을 처리하는 클래스.
 class Node;
+
 class AStar
 {
 private:
@@ -23,8 +24,8 @@ public:
 	AStar();
 	~AStar();
 
-	// 경로 검색 함수.
-	std::vector<Node*> FindPath(Node* startNode, Node* goalNode, const std::vector<std::vector<int>>& grid);
+	// 경로 검색 함수.z
+	std::vector<Node*> FindPath(Node* startNode, Node* goalNode, const std::vector<std::vector<int>>& grid, std::vector<std::pair<int, int>>& questList, std::vector<std::pair<int, int>>& aStarList);
 
 	// 그리드 출력 함수.
 	void DisplayGridWithPath(std::vector<std::vector<int>>& grid, const std::vector<Node*>& path);
@@ -32,7 +33,7 @@ public:
 private:
 	// 탐색을 마친 후 최적 경로를 반환하는 함수.
 	// 목표 노드에서 부모 노드를 참조해 시작노드까지 역추적하면 경로를 구할 수 있다.
-	std::vector<Node*> ConstructPath(Node* goalNode);
+	std::vector<Node*> ConstructPath(Node* goalNode, std::vector<std::pair<int, int>>& aStarList);
 
 	// hCost 계산 함수.
 	float CalculateHeuristic(Node* currentNode, Node* goalNode);

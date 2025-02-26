@@ -200,6 +200,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\ButtonActor.cpp" />
     <ClCompile Include="Actor\EndActor.cpp" />
     <ClCompile Include="Actor\GameBoard.cpp" />
     <ClCompile Include="Actor\StartActor.cpp" />
@@ -212,6 +213,7 @@
     <ClCompile Include="MyClass\PreCompiledHeaderDebug\PreCompiledHeaderDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\ButtonActor.h" />
     <ClInclude Include="Actor\GameBoard.h" />
     <ClInclude Include="Actor\EndActor.h" />
     <ClInclude Include="Actor\StartActor.h" />
