@@ -2,6 +2,7 @@
 #include "ErrorDeliver/ErrorDeliver.h"
 #include "FIleRead/FileReader.h"
 #include "MapConverter/MapConverter.h"
+#include "Level/SymulationLevel.h"
 #include "MapInfo.h"
 #include "vector"
 
@@ -16,9 +17,11 @@ int main()
 		std::vector<std::string> box = fileReader.MakeStringBox();
 		MapConverter mapConverter(box);
 		MapInfo mInfo = mapConverter.CreateMapInfo();
+		SymulationLevel* symulationLevel = new SymulationLevel();
+		symulationLevel->SetMapInfo(mInfo);
 		Engine engine;
-		//engine.LoadLevel(new DemoLevel());
-		//engine.Run();
+		engine.LoadLevel(symulationLevel);
+		engine.Run();
 	}
 	catch (const ErrorDeliver *ErrorObj)
 	{

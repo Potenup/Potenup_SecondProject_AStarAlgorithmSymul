@@ -18,6 +18,8 @@ class GameBoard : public Actor
 
 		bool IsValidPosition(const Vector2& pos, char c) const;
 
+		void ChangeBoardUnit(int x, int y, char c);
+
 	private :
 		soun::MapInfo mapInfo;
 

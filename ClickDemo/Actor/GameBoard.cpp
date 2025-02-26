@@ -40,6 +40,9 @@ void GameBoard::Draw()
                 case GameObj::ver:
                     cColor = Color::Blue;
                     break;
+                case GameObj::start:
+                case GameObj::end:
+                    c = '0';
                 default:
                     break;
                 }
@@ -49,7 +52,7 @@ void GameBoard::Draw()
                 str[1] = 0;
                 Engine::Get().Draw(Vector2(x, y), str, cColor);
 
-                this->dirtyCheckBoard[y][x] = false;
+            //    this->dirtyCheckBoard[y][x] = false;
             }
         }
     }
@@ -60,4 +63,22 @@ bool GameBoard::IsValidPosition(const Vector2& pos, char c) const
     if (pos.x < 0 || pos.y < 0 || pos.y >= this->mapInfo.vertical_ || pos.x >= this->mapInfo.horizontal_)
         return false;
     return (this->mapInfo.map_[pos.y][pos.x] == c);
+}
+
+void GameBoard::ChangeBoardUnit(int x, int y, char c)
+{
+    using namespace soun;
+
+    this->mapInfo.map_[y][x] = c;
+
+    if (c == GameObj::start)
+    {
+        this->mapInfo.start_.y = y;
+        this->mapInfo.start_.x = x;
+    }
+    else if (c == GameObj::end)
+    {
+        this->mapInfo.end_.y = y;
+        this->mapInfo.end_.x = x;
+    }
 }

@@ -5,7 +5,7 @@
 StartActor::StartActor()
 	: DrawableActor("s")
 {
-	color = Color::Red;
+	color = Color::Green;
 }
 
 void StartActor::Update(float deltaTime)
@@ -20,7 +20,9 @@ void StartActor::Update(float deltaTime)
 
 		if (level && level->IsValidPosition(mousePos, soun::GameObj::road))
 		{
+			level->SetBoradUnit(position.x, position.y, '0');
 			position = mousePos;
+			level->SetBoradUnit(position.x, position.y, 's');
 		}
 	}
 }
