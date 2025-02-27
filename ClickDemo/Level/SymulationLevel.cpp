@@ -112,6 +112,7 @@ void SymulationLevel::ChangeStateToQuesting()
 	if (this->astarList_.size() >= 2)
 	{
 		std::vector<std::pair<int, int>> v(this->astarList_.begin() + 1, this->astarList_.end() - 1);
+		this->flag_ = true;
 		this->astarList_ = v;
 	}
 
@@ -175,7 +176,7 @@ void SymulationLevel::QuestingFuc(float deltaTime)
 		}
 		else 
 		{
-			if (this->astarList_.empty())
+			if (!this->flag_)
 			{
 				this->state_ = SymulationLevel::RestartReady;
 				int buttonY = mapInfo_.vertical_ + 1;

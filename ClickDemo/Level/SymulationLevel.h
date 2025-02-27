@@ -86,4 +86,6 @@ class SymulationLevel : public Level
 
 		size_t currentQuestIndex_ = 0;
 		size_t currentAstarIndex_ = 0;
+
+		bool flag_ =false;
 };

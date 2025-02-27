@@ -139,7 +139,7 @@ namespace soun
 			{
 				if (this->QuestNeber(i, j, direct, mInfo) == false)
 				{
-					DebugBreak();
+					DEBUG_BREAK();
 					throw(new ErrorDeliver(ERROR_MAP_NOTVALID));
 				}
 			}
