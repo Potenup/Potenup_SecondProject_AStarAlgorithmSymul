@@ -311,13 +311,17 @@ void Engine::Update(float deltaTime)
 {
 	keyState[VK_LBUTTON].isKeyDown = (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0;
 	keyState[VK_RBUTTON].isKeyDown = (GetAsyncKeyState(VK_RBUTTON) & 0x8000) != 0;
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_FONT_INFOEX fontInfo = { sizeof(CONSOLE_FONT_INFOEX) };
 
+	if (!GetCurrentConsoleFontEx(hConsole, FALSE, &fontInfo))
+		return ;
 	POINT cursorPos;
 	if (GetCursorPos(&cursorPos))
 	{
 		ScreenToClient(GetConsoleWindow(), &cursorPos);
-		this->mousePosition.x = cursorPos.x / 8;
-		this->mousePosition.y = cursorPos.y / 16;
+		this->mousePosition.x = ((float)cursorPos.x / fontInfo.dwFontSize.X);
+		this->mousePosition.y = (float)cursorPos.y / fontInfo.dwFontSize.Y;
 	}
 
 	if (mainLevel != nullptr)
