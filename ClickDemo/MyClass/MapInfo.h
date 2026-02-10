@@ -39,10 +39,11 @@ namespace soun
 		static const char start = 's';
 		static const char end = 'e';
 		static const char road = '0';
-		static const char questRoad = '3';
-		static const char AstarRoad = '4';
 		static const char wall = '1';
 		static const char empty = '2';
+		// Ãß°¡
+		static const char questRoad = '3';
+		static const char AstarRoad = '4';
 		static const char space = ' ';
 		static const char hor = '|';
 		static const char ver = '-';

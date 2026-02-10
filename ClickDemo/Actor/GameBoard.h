@@ -26,4 +26,13 @@ class GameBoard : public Actor
 		std::vector<std::vector<bool>> dirtyCheckBoard_;
 
 		bool dirtyControl_ = true;
+
+		// 프레임 수.
+		long long frameCount_ = 0;
+
+		// 각 프레임에서 실제로 그린 셀의 누적합.
+		long long drawCellsSum_ = 0;
+
+		// 각 프레임의 전체 셀 수의 누적합.
+		long long totalCellsSum_ = 0;
 };

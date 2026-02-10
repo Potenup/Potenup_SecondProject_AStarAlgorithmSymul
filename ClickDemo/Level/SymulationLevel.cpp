@@ -168,7 +168,10 @@ void SymulationLevel::QuestingFuc(float deltaTime)
 		{
 			Vector2 pos(this->questList_[this->currentQuestIndex_].first, this->questList_[this->currentQuestIndex_].second);
 
-			Engine::Get().Draw(pos, "0", Color::Yellow);
+			// 기존 코드
+			//Engine::Get().Draw(pos, "0", Color::Yellow);
+			
+			this->SetBoradUnit(pos.x, pos.y, soun::GameObj::questRoad);
 
 			this->currentQuestIndex_ = this->currentQuestIndex_ + 1;
 
@@ -214,7 +217,10 @@ void SymulationLevel::OptimizingFuc(float deltaTime)
 		{
 			Vector2 pos(this->astarList_[this->currentAstarIndex_].first, this->astarList_[this->currentAstarIndex_].second);
 
-			Engine::Get().Draw(pos, "0", Color::Green);
+			// 기존 코드
+			//Engine::Get().Draw(pos, "0", Color::Green);
+
+			this->SetBoradUnit(pos.x, pos.y, soun::GameObj::AstarRoad);
 
 			this->currentAstarIndex_ = this->currentAstarIndex_ + 1;
 

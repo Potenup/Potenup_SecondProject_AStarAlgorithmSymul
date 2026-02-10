@@ -24,7 +24,7 @@ public:
 	AStar();
 	~AStar();
 
-	// 경로 검색 함수.z
+	// 경로 검색 함수.
 	std::vector<Node*> FindPath(Node* startNode, Node* goalNode, const std::vector<std::vector<int>>& grid, std::vector<std::pair<int, int>>& questList, std::vector<std::pair<int, int>>& aStarList);
 
 	// 그리드 출력 함수.
